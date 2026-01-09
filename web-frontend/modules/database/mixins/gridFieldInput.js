@@ -27,6 +27,12 @@ export default {
         this.$emit('edit', this.prepareValue(newCopy), this.value)
       }
     },
+    editing: {
+      handler(newValue) {
+        this.$emit('editing-changed', newValue)
+      },
+      immediate: true,
+    },
   },
   mounted() {
     const leftMouseDownListener = (event) => {
