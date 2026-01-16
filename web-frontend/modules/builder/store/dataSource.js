@@ -388,11 +388,12 @@ const actions = {
 
 const getters = {
   getPageDataSources: (state) => (page) => {
-    if (!page || !page.dataSources) return [] // TODO MIG: remove this
+    // page can be null due to useAsyncData loading
+    if (!page || !page.dataSources) return []
     return page.dataSources
   },
   getPagesDataSources: (state) => (pages) => {
-    if (!pages) return [] // TODO MIG: remove this
+    if (!pages) return []
     // TODO MIG: this is a fix for the fact that pages.dataSources is not an array, might not be useful at the.
     // Replace it with the original return below
     return pages
@@ -411,7 +412,7 @@ const getters = {
     return getters.getPagesDataSourceById([page], id)
   },
   getLoading: (state) => (page) => {
-    if (!page || !page._) return false // TODO MIG: remove this
+    if (!page || !page._) return false
     return page._.dataSourceLoading
   },
 }
