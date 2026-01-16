@@ -106,7 +106,7 @@ export default {
       return !this.actualDataSourceId
     },
     isShared() {
-      return !this.create && this.dataSource?.page_id === this.sharedPage.id
+      return !this.create && this.dataSource?.page_id === this.sharedPage?.id
     },
     dataSource() {
       if (this.create) {

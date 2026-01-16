@@ -206,7 +206,7 @@ export class ElementType extends Registerable {
       const sharedPage = this.app.$store.getters['page/getSharedPage'](builder)
 
       if (pagePlace === PAGE_PLACES.HEADER) {
-        if (beforeElement && beforeElement.page_id === sharedPage.id) {
+        if (beforeElement && beforeElement.page_id === sharedPage?.id) {
           // It's not allowed to add these elements as root inside header before
           // another multi page element
           return this.app.$i18n.t('elementType.notAllowedLocation')
@@ -2320,7 +2320,7 @@ export class HeaderElementType extends MultiPageElementTypeMixin(
     const sharedPage = this.app.$store.getters['page/getSharedPage'](builder)
 
     if (
-      page.id === sharedPage.id &&
+      page.id === sharedPage?.id &&
       pagePlace &&
       pagePlace !== PAGE_PLACES.HEADER
     ) {
@@ -2328,7 +2328,7 @@ export class HeaderElementType extends MultiPageElementTypeMixin(
       return this.app.$i18n.t('elementType.notAllowedUnlessHeader')
     }
 
-    if (page.id !== sharedPage.id) {
+    if (page.id !== sharedPage?.id) {
       const orderedElements =
         this.app.$store.getters['element/getElementsOrdered'](page)
       // Can't be inserted after the first element of the page
@@ -2397,7 +2397,7 @@ export class FooterElementType extends HeaderElementType {
 
     const sharedPage = this.app.$store.getters['page/getSharedPage'](builder)
     if (
-      page.id === sharedPage.id &&
+      page.id === sharedPage?.id &&
       pagePlace &&
       pagePlace !== PAGE_PLACES.FOOTER
     ) {
@@ -2405,9 +2405,9 @@ export class FooterElementType extends HeaderElementType {
       return this.app.$i18n.t('elementType.notAllowedUnlessFooter')
     }
 
-    if (page.id !== sharedPage.id) {
+    if (page.id !== sharedPage?.id) {
       // Can't be inserted before the end of the page
-      if (beforeElement && beforeElement.page_id !== sharedPage.id) {
+      if (beforeElement && beforeElement.page_id !== sharedPage?.id) {
         return this.app.$i18n.t('elementType.notAllowedUnlessBottom')
       }
     }

@@ -51,7 +51,7 @@ export default {
      * @returns {Array} - The data sources the page designer can choose from.
      */
     localDataSources() {
-      if (this.elementPage.id === this.sharedPage.id) {
+      if (this.elementPage?.id === this.sharedPage?.id) {
         // If the element is on the shared page they are no local page but only
         // shared page.
         return null
