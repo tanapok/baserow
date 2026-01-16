@@ -394,14 +394,13 @@ const getters = {
   },
   getPagesDataSources: (state) => (pages) => {
     if (!pages) return []
-    // TODO MIG: this is a fix for the fact that pages.dataSources is not an array, might not be useful at the.
-    // Replace it with the original return below
+
+    // Filter out null/undefined pages. E.g. sharedPage can be undefined
+    // during useAsyncData loading.
     return pages
       .filter((page) => page && page.dataSources)
       .map(({ dataSources }) => dataSources)
       .flat()
-    // TODO MIG: original return is the following
-    // return pages.map(({ dataSources }) => dataSources).flat()
   },
   getPagesDataSourceById: (state, getters) => (pages, id) => {
     return getters
