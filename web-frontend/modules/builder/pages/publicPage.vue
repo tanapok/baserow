@@ -211,7 +211,6 @@ const { data: asyncDataResult, error } = await useAsyncData(
 
     // Handle 404
     if (!found) {
-      // TODO MIG this doesn't work
       throw createError({
         statusCode: 404,
         statusMessage: $i18n.t('publicPage.pageNotFound'),
@@ -222,7 +221,6 @@ const { data: asyncDataResult, error } = await useAsyncData(
     // Handle 404
     if (pageFound.shared) {
       throw createError({
-        // TODO MIG this doesn't work
         statusCode: 404,
         statusMessage: $i18n.t('publicPage.pageNotFound'),
       })
