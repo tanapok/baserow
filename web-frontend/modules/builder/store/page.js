@@ -182,7 +182,8 @@ const actions = {
 
 const getters = {
   getAllPages: (state) => (builder) => {
-    if (!builder || !builder.pages) return [] // TODO MIG remove this
+    // builder can be null due to useAsyncData loading
+    if (!builder || !builder.pages) return []
     return builder.pages
   },
   getById: (state, getters) => (builder, pageId) => {
