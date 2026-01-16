@@ -437,8 +437,6 @@ const headConfig = computed(() => {
     bodyAttrs: {
       class: 'public-page',
     },
-    // TODO MIG it shouldn't be necessary anymore but need to check
-    //__dangerouslyDisableSanitizers: ['style'],
     style: [{ children: `:root { ${cssVars} }`, type: 'text/css' }],
   }
 
