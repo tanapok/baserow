@@ -80,7 +80,6 @@ const { data: asyncDataResult, error } = await useAsyncData(
   `publicPage_${requestHostname}_${route.fullPath}`,
   async () => {
     let mode = 'public'
-    //const params = route.params
     const query = route.query
 
     const builderId = route.params.builderId
@@ -119,13 +118,10 @@ const { data: asyncDataResult, error } = await useAsyncData(
           )
         }
       } catch (e) {
-        console.log(e)
-        throw e
-        // TODO MIG doesn't work
-        /*throw createError({
+        throw createError({
           statusCode: 404,
           statusMessage: $i18n.t('publicPage.siteNotFound'),
-        })*/
+        })
       }
 
       needPostBuilderLoading = true
