@@ -219,11 +219,6 @@ watch(
 
 // Navigation guards
 onBeforeRouteUpdate((to, from) => {
-  // TODO MIG Somehow this hook is called when we leave the route for another component
-  // This tests avoid navigation errors.
-  if (from.params.builderId === undefined) {
-    return
-  }
   // Unselect previously selected element
   const currentBuilder = $store.getters['application/get'](
     parseInt(from.params.builderId)
