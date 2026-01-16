@@ -223,10 +223,12 @@ onBeforeRouteUpdate((to, from) => {
   const currentBuilder = $store.getters['application/get'](
     parseInt(from.params.builderId)
   )
-  $store.dispatch('element/select', {
-    builder: currentBuilder,
-    element: null,
-  })
+  if (currentBuilder) {
+    $store.dispatch('element/select', {
+      builder: currentBuilder,
+      element: null,
+    })
+  }
   if (from.params.builderId !== to.params?.builderId) {
     // When we switch from one application to another we want to logoff the current user
     if (currentBuilder) {
