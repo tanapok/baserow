@@ -62,6 +62,10 @@ const {
   $i18n: { t: $t },
 } = nuxtApp
 
+function finishLoading() {
+  nuxtApp.callHook('page:loading:end')
+}
+
 const tableLoading = computed(() => $store.state.table.loading)
 const views = computed(() => $store.state.view.items)
 
@@ -231,6 +235,11 @@ onBeforeRouteUpdate(async (to, from, next) => {
   const prevTableId = parseIntOrNull(from.params.tableId)
   const failed = $store.getters['rowModalNavigation/getFailedToFetchTableRowId']
 
+  const isRowOnlyNavigation =
+    currentTableId === prevTableId &&
+    to.params.viewId === from.params.viewId &&
+    to.params.rowId !== from.params.rowId
+
   if (currentRowId == null) {
     await $store.dispatch('rowModalNavigation/clearRow')
   } else if (
@@ -255,6 +264,10 @@ onBeforeRouteUpdate(async (to, from, next) => {
     }
   }
   next()
+
+  if (isRowOnlyNavigation) {
+    finishLoading()
+  }
 })
 
 /**
@@ -280,7 +293,7 @@ async function navigateToRowModal(row) {
     await $store.dispatch('rowModalNavigation/setRow', row)
   }
 
-  router.push({
+  await router.push({
     name: rowId ? 'database-table-row' : 'database-table',
     params: {
       databaseId: database.value.id,
@@ -289,6 +302,8 @@ async function navigateToRowModal(row) {
       rowId,
     },
   })
+
+  finishLoading()
 }
 
 async function setAdjacentRow(previous, row = null, term = null) {
