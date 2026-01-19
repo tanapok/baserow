@@ -7,9 +7,9 @@ any other method with us. If you do not know on what to contribute, please send 
 small overview of your experience and optionally what you would like to learn. We will
 get back to you as soon as possible with proposed issues.
 
-## We develop with GitLab
+## We develop with GitHub
 
-We use GitLab to host code, to track issues and to make feature requests. The official
+We use GitHub to host code, to track issues and to make feature requests. The official
 repository can be found on https://github.com/baserow/baserow/. 
 
 ## The merge request process
